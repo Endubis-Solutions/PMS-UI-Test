@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import {
   BarChart3,
   BedDouble,
+  ExternalLink,
   Globe,
   LogOut,
   MoreHorizontal,
@@ -18,6 +19,7 @@ const SECONDARY_NAV = [
   { to: '/finance', label: 'Admin finance', icon: Wallet, admin: true },
   { to: '/rates', label: 'Pricing', icon: BedDouble },
   { to: '/logs', label: 'Logs', icon: ShieldCheck, admin: true },
+  { href: 'https://erp-test-ui.netlify.app/', label: 'ERP', icon: ExternalLink, admin: true },
 ]
 
 export function OverflowMenu() {
@@ -62,6 +64,24 @@ export function OverflowMenu() {
 
           {secondary.map((item) => {
             const Icon = item.icon
+            const itemClass =
+              'flex w-full items-center gap-2.5 rounded-control px-3 py-2 text-left text-[13px] text-ink transition-colors hover:bg-page'
+            if (item.href) {
+              return (
+                <a
+                  key={item.label}
+                  role="menuitem"
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setOpen(false)}
+                  className={itemClass}
+                >
+                  <Icon className="h-4 w-4 text-muted" strokeWidth={1.75} aria-hidden="true" />
+                  <span className="flex-1">{item.label}</span>
+                </a>
+              )
+            }
             return (
               <button
                 key={item.label}
@@ -71,7 +91,7 @@ export function OverflowMenu() {
                   setOpen(false)
                   navigate(item.to)
                 }}
-                className="flex w-full items-center gap-2.5 rounded-control px-3 py-2 text-left text-[13px] text-ink transition-colors hover:bg-page"
+                className={itemClass}
               >
                 <Icon className="h-4 w-4 text-muted" strokeWidth={1.75} aria-hidden="true" />
                 <span className="flex-1">{item.label}</span>
