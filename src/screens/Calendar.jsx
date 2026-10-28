@@ -11,6 +11,7 @@ import { DAY_W } from '../components/timeline-parts'
 import { PillTooltip } from '../components/pill-tooltip'
 import { BookingDrawer } from '../components/booking-drawer'
 import { CheckInModal } from '../components/checkin-modal'
+import { MoveBookingModal } from '../components/move-booking'
 import { CalendarHeader, DragBar } from './calendar-toolbar'
 import { useCalendarDemoState } from './calendar-effects'
 import { useCalendarDrag } from './use-calendar-drag'
@@ -28,6 +29,7 @@ export default function Calendar() {
   const [hover, setHover] = useState(null)
   const [retried, setRetried] = useState(false)
   const [selectedDate, setSelectedDate] = useState(query.date ?? TODAY)
+  const [moveId, setMoveId] = useState(null)
 
   const start = RANGE_START
   const dates = useMemo(() => datesFrom(RANGE_START, RANGE_DAYS), [])
@@ -102,7 +104,7 @@ export default function Calendar() {
             </span>
             {state === 'group' ? <Badge tone="primary">Group · Kigali FC U19</Badge> : null}
           </div>
-          <p className="text-[11px] text-muted">Click to open a stay. Drag to move it.</p>
+          <p className="text-[11px] text-muted">Click to open a stay. Use “Move bed” in the details.</p>
         </div>
 
         <DragBar drag={drag.drag} duration={drag.duration} dropTarget={drag.dropTarget} onCancel={drag.cancel} />
@@ -165,13 +167,12 @@ export default function Calendar() {
         onClose={() => navigate('/calendar')}
         onCheckIn={(id) => navigate(`/calendar?checkin=${id}`)}
         onOpenFolio={(id) => navigate(`/folio/${id}`)}
-        onMove={() => {
-          setHover(null)
-          notify({ title: 'Drag the booking pill', description: 'Drop it on any free bed.' })
-        }}
+        onMove={(booking) => setMoveId(booking.id)}
       />
 
       <CheckInModal bookingId={query.checkin} onClose={() => navigate('/calendar')} />
+
+      <MoveBookingModal bookingId={moveId} onClose={() => setMoveId(null)} />
     </div>
   )
 }

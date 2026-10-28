@@ -30,7 +30,7 @@ export function Drawer({ open, onClose, title, subtitle, header, tabs, children,
         className="absolute right-0 top-0 flex h-full max-w-full animate-drawer-in flex-col border-l border-line bg-card shadow-drawer"
         style={{ width }}
       >
-        <header className="flex items-start justify-between gap-3 border-b border-line px-6 py-4">
+        <header className="flex items-start justify-between gap-3 border-b border-line px-4 py-4 sm:px-6">
           <div className="min-w-0">
             {header ?? (
               <>
@@ -41,9 +41,9 @@ export function Drawer({ open, onClose, title, subtitle, header, tabs, children,
           </div>
           <IconButton icon={X} label="Close" onClick={onClose} className="-mr-2" />
         </header>
-        {tabs ? <div className="px-6">{tabs}</div> : null}
-        <div className="flex-1 overflow-y-auto px-6 py-5">{children}</div>
-        {footer ? <div className="border-t border-line bg-card px-6 py-4">{footer}</div> : null}
+        {tabs ? <div className="px-4 sm:px-6">{tabs}</div> : null}
+        <div className="flex-1 overflow-y-auto px-4 py-5 sm:px-6">{children}</div>
+        {footer ? <div className="border-t border-line bg-card px-4 py-4 sm:px-6">{footer}</div> : null}
       </aside>
     </div>
   )
@@ -53,7 +53,7 @@ export function Modal({ open, onClose, title, subtitle, children, footer, width 
   useEscape(open, onClose)
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
       <Scrim onClose={onClose} />
       <div
         role="dialog"
@@ -62,15 +62,15 @@ export function Modal({ open, onClose, title, subtitle, children, footer, width 
         className="relative flex max-h-full w-full animate-modal-in flex-col rounded-card border border-line bg-card shadow-raised"
         style={{ maxWidth: width }}
       >
-        <header className="flex items-start justify-between gap-4 border-b border-line px-6 py-4">
+        <header className="flex items-start justify-between gap-4 border-b border-line px-4 py-4 sm:px-6">
           <div>
             <h2 className="text-[18px] font-semibold leading-6 text-ink">{title}</h2>
             {subtitle ? <p className="mt-0.5 text-[13px] text-muted">{subtitle}</p> : null}
           </div>
           <IconButton icon={X} label="Close" onClick={onClose} className="-mr-2" />
         </header>
-        <div className="flex-1 overflow-y-auto px-6 py-5">{children}</div>
-        {footer ? <div className="border-t border-line px-6 py-4">{footer}</div> : null}
+        <div className="flex-1 overflow-y-auto px-4 py-5 sm:px-6">{children}</div>
+        {footer ? <div className="border-t border-line px-4 py-4 sm:px-6">{footer}</div> : null}
       </div>
     </div>
   )

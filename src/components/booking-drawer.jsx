@@ -155,7 +155,7 @@ export function BookingDrawer({ bookingId, initialTab, onClose, onCheckIn, onOpe
               >
                 Edit
               </ActionButton>
-              <ActionButton variant="secondary" size="sm" onClick={() => { onMove(); onClose() }}>
+              <ActionButton variant="secondary" size="sm" onClick={() => { onMove(booking); onClose() }}>
                 Move bed
               </ActionButton>
               <ActionButton variant="danger" size="sm" icon={XCircle} onClick={() => setConfirm('cancel')}>

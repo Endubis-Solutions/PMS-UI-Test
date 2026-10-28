@@ -23,7 +23,7 @@ export function TimelineGrid(props) {
   }
 
   return (
-    <div className="relative overflow-x-auto" data-timeline-scroll onScroll={onScroll}>
+    <div className="relative max-h-[calc(100vh-18rem)] min-h-[300px] overflow-auto" data-timeline-scroll onScroll={onScroll}>
       <div style={{ width: RAIL_W + trackWidth }}>
         <div className="sticky top-0 z-30 bg-card">
           <div className="flex">
