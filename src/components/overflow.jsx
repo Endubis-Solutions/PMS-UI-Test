@@ -6,6 +6,7 @@ import {
   Globe,
   LogOut,
   MoreHorizontal,
+  Settings,
   ShieldCheck,
   Wallet,
 } from 'lucide-react'
@@ -19,6 +20,7 @@ const SECONDARY_NAV = [
   { to: '/finance', label: 'Admin finance', icon: Wallet, admin: true },
   { to: '/rates', label: 'Pricing', icon: BedDouble },
   { to: '/logs', label: 'Logs', icon: ShieldCheck, admin: true },
+  { to: '/settings', label: 'Settings', icon: Settings, admin: true },
   { href: 'https://erp-test-ui.netlify.app/', label: 'ERP', icon: ExternalLink, admin: true },
 ]
 

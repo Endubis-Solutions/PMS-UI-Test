@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Compass } from 'lucide-react'
 import { useApp } from './lib/store'
 import { navigate, useRoute } from './lib/router'
@@ -18,6 +18,7 @@ import Reports from './screens/Reports'
 import Rates from './screens/Rates'
 import FinanceEntry from './screens/FinanceEntry'
 import Logs from './screens/Logs'
+import Settings from './screens/Settings'
 import StyleGuide from './screens/StyleGuide'
 import Frames from './screens/Frames'
 
@@ -34,6 +35,7 @@ const ROUTES = {
   '/rates': Rates,
   '/finance-entry': FinanceEntry,
   '/logs': Logs,
+  '/settings': Settings,
   '/styleguide': StyleGuide,
   '/frames': Frames,
 }
@@ -41,10 +43,15 @@ const ROUTES = {
 export default function App() {
   const { pathname } = useRoute()
   const { user, toast, dismissToast } = useApp()
+  const mainRef = useRef(null)
 
   useEffect(() => {
     if (!user && pathname !== '/login' && pathname !== '/frames') navigate('/login')
   }, [user, pathname])
+
+  useEffect(() => {
+    mainRef.current?.scrollTo(0, 0)
+  }, [pathname])
 
   if (!user && pathname !== '/frames') {
     if (pathname !== '/login') navigate('/login')
@@ -57,9 +64,9 @@ export default function App() {
   const Screen = ROUTES[routePath]
 
   return (
-    <div className="flex min-h-screen flex-col bg-page">
+    <div className="flex h-screen flex-col overflow-hidden bg-page">
       <TopNav />
-      <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-4 pb-8 sm:px-6 sm:py-6 sm:pb-12">
+      <main ref={mainRef} className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col overflow-y-auto px-4 py-4 pb-8 sm:px-6 sm:py-6 sm:pb-12">
         {Screen ? (
           <Screen />
         ) : (

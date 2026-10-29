@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { ACCOUNTS, HOSTELS, TODAY, USERS, hostelById } from '../data/core'
+import { ACCOUNTS, HOSTELS, INITIAL_FEATURES, INITIAL_STAFF, TODAY, USERS, hostelById } from '../data/core'
 import { GUESTS, HOLDS, INITIAL_BOOKINGS } from '../data/bookings'
 import { INITIAL_LEDGER, INITIAL_STAFF_ENTRIES, INITIAL_TRANSFERS } from '../data/finance'
 
@@ -34,6 +34,8 @@ export function AppProvider({ children }) {
     Object.fromEntries(GUESTS.map((guest) => [guest.id, guest.notes])),
   )
   const [toast, setToast] = useState(null)
+  const [staff, setStaff] = useState(INITIAL_STAFF)
+  const [features, setFeatures] = useState(INITIAL_FEATURES)
   const timer = useRef(null)
 
   const notify = useCallback((next) => {
@@ -119,6 +121,18 @@ export function AppProvider({ children }) {
     [],
   )
 
+  const addStaff = useCallback((account) => {
+    setStaff((rows) => [...rows, account])
+  }, [])
+
+  const removeStaff = useCallback((id) => {
+    setStaff((rows) => rows.filter((account) => account.id !== id))
+  }, [])
+
+  const setFeature = useCallback((key, value) => {
+    setFeatures((current) => ({ ...current, [key]: value }))
+  }, [])
+
   const hostel = useMemo(() => hostelById(hostelId), [hostelId])
   const hostelAccounts = useMemo(
     () => accounts.filter((account) => account.hostelId === hostelId),
@@ -184,6 +198,11 @@ export function AppProvider({ children }) {
     addLedgerEntry,
     addStaffEntry,
     addTransfer,
+    staff,
+    features,
+    addStaff,
+    removeStaff,
+    setFeature,
     toast,
     notify,
     dismissToast: () => setToast(null),

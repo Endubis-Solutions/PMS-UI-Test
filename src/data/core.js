@@ -206,6 +206,20 @@ export const USERS = {
   },
 }
 
+// Staff accounts managed from Settings. Admins and staff can sign in.
+export const INITIAL_STAFF = [
+  { id: 'u-sara', name: 'Sara Bekele', email: 'staff@madvervet.com', role: 'staff', hostelId: 'addis', title: 'Front desk', initials: 'SB' },
+  { id: 'u-almaz', name: 'Almaz Tesfaye', email: 'admin@madvervet.com', role: 'admin', hostelId: 'addis', title: 'Owner', initials: 'AT' },
+  { id: 'u-hanna', name: 'Hanna Girma', email: 'hanna@madvervet.com', role: 'staff', hostelId: 'addis', title: 'Front desk', initials: 'HG' },
+  { id: 'u-daniel', name: 'Daniel Mwangi', email: 'daniel@madvervet.com', role: 'staff', hostelId: 'nairobi', title: 'Front desk', initials: 'DM' },
+]
+
+// Feature flags managed from Settings.
+export const INITIAL_FEATURES = {
+  emailParsing: true,
+  otaParsing: false, // stays off — no OTA parsing yet
+}
+
 export const DEMO_ACCOUNTS = [
   { role: 'staff', email: 'staff@madvervet.com', password: 'reception', label: 'Staff · Addis Ababa' },
   { role: 'admin', email: 'admin@madvervet.com', password: 'admin', label: 'Admin · both hostels' },
