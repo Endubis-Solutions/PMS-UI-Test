@@ -47,7 +47,7 @@ export function BedRow({
         {rowHolds.length ? <span className="ml-auto text-[10px] font-medium text-muted">On hold</span> : null}
       </div>
 
-      <div className="relative h-11 shrink-0 border-b border-line" style={{ width: trackWidth }}>
+      <div className="relative flex h-11 shrink-0 border-b border-line" style={{ width: trackWidth }}>
         {todayIndex >= 0 && todayIndex < dates.length ? (
           <div
             className="pointer-events-none absolute inset-y-0 z-0 border-x border-primary/25 bg-primary/10"
