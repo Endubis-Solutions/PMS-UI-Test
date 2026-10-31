@@ -28,9 +28,7 @@ export function TopNav() {
       <div className="h-16 border-b border-line">
         <div className="mx-auto flex h-full max-w-[1440px] items-center gap-3 px-6">
           <Link to="/dashboard" className="flex shrink-0 items-center gap-2.5" aria-label="Mad Vervet PMS home">
-            <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-primary text-[11px] font-bold tracking-tight text-white">
-              MV
-            </span>
+            <img src="/logo.jpg" alt="Mad Vervet" className="h-8 w-8 rounded-[8px] object-cover" />
             <span className="hidden flex-col leading-none sm:flex">
               <span className="text-[14px] font-semibold text-ink">Mad Vervet</span>
               <span className="mt-1 text-[9px] uppercase tracking-[0.12em] text-muted">Hostel PMS</span>

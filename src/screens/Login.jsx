@@ -10,9 +10,7 @@ export default function Login() {
       <div className="border-b border-line bg-card">
         <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-6">
           <Link to="/login" className="flex items-center gap-2.5" aria-label="Mad Vervet PMS">
-            <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-primary text-[11px] font-bold text-white">
-              MV
-            </span>
+            <img src="/logo.jpg" alt="Mad Vervet" className="h-8 w-8 rounded-[8px] object-cover" />
             <span className="flex flex-col leading-none">
               <span className="text-[14px] font-semibold text-ink">Mad Vervet</span>
               <span className="mt-1 text-[9px] uppercase tracking-[0.12em] text-muted">Hostel PMS</span>
