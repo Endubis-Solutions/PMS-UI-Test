@@ -220,6 +220,15 @@ export const INITIAL_FEATURES = {
   otaParsing: false, // stays off — no OTA parsing yet
 }
 
+// Reminders surfaced in the notifications menu.
+export const INITIAL_NOTIFICATIONS = [
+  { id: 'n1', title: 'No finance entry yesterday?', description: 'Addis Ababa has no finance entries for yesterday. Log anything that crossed the desk.', tone: 'warning', time: 'Today 09:00', unread: true },
+  { id: 'n2', title: 'Booking.com data not imported', description: 'OTA parsing is off, so Booking.com reservations were not pulled. Turn it on in Settings to import.', tone: 'warning', time: 'Today 08:30', unread: true },
+  { id: 'n3', title: 'Overbooking alert', description: 'Hawassa · Bed 3 has two reservations overlapping on 21 Sep. Move one before check-in.', tone: 'danger', time: 'Yesterday 18:40', unread: true },
+  { id: 'n4', title: 'Late check-in tonight', description: 'Mei Tanaka arrives around 19:00 — late check-in was agreed.', tone: 'info', time: 'Yesterday 16:12', unread: false },
+  { id: 'n5', title: 'Maintenance hold ending', description: 'Bale’s maintenance hold ends today. The room is bookable again from tomorrow.', tone: 'info', time: '2 days ago', unread: false },
+]
+
 export const DEMO_ACCOUNTS = [
   { role: 'staff', email: 'staff@madvervet.com', password: 'reception', label: 'Staff · Addis Ababa' },
   { role: 'admin', email: 'admin@madvervet.com', password: 'admin', label: 'Admin · both hostels' },

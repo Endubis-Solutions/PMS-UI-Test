@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { ACCOUNTS, HOSTELS, INITIAL_FEATURES, INITIAL_STAFF, TODAY, USERS, hostelById } from '../data/core'
+import { ACCOUNTS, HOSTELS, INITIAL_FEATURES, INITIAL_NOTIFICATIONS, INITIAL_STAFF, TODAY, USERS, hostelById } from '../data/core'
 import { GUESTS, HOLDS, INITIAL_BOOKINGS } from '../data/bookings'
 import { INITIAL_LEDGER, INITIAL_STAFF_ENTRIES, INITIAL_TRANSFERS } from '../data/finance'
 
@@ -36,6 +36,7 @@ export function AppProvider({ children }) {
   const [toast, setToast] = useState(null)
   const [staff, setStaff] = useState(INITIAL_STAFF)
   const [features, setFeatures] = useState(INITIAL_FEATURES)
+  const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS)
   const timer = useRef(null)
 
   const notify = useCallback((next) => {
@@ -133,6 +134,18 @@ export function AppProvider({ children }) {
     setFeatures((current) => ({ ...current, [key]: value }))
   }, [])
 
+  const markNotificationRead = useCallback((id) => {
+    setNotifications((rows) => rows.map((item) => (item.id === id ? { ...item, unread: false } : item)))
+  }, [])
+
+  const markAllNotificationsRead = useCallback(() => {
+    setNotifications((rows) => rows.map((item) => ({ ...item, unread: false })))
+  }, [])
+
+  const dismissNotification = useCallback((id) => {
+    setNotifications((rows) => rows.filter((item) => item.id !== id))
+  }, [])
+
   const hostel = useMemo(() => hostelById(hostelId), [hostelId])
   const hostelAccounts = useMemo(
     () => accounts.filter((account) => account.hostelId === hostelId),
@@ -203,6 +216,10 @@ export function AppProvider({ children }) {
     addStaff,
     removeStaff,
     setFeature,
+    notifications,
+    markNotificationRead,
+    markAllNotificationsRead,
+    dismissNotification,
     toast,
     notify,
     dismissToast: () => setToast(null),

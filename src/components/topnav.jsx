@@ -9,6 +9,7 @@ import { CURRENCIES } from '../data/core'
 import { useApp } from '../lib/store'
 import { Link, useRoute } from '../lib/router'
 import { PropertyChip } from './property'
+import { NotificationsMenu } from './notifications'
 import { OverflowMenu } from './overflow'
 import { cx } from './ui'
 
@@ -83,6 +84,8 @@ export function TopNav() {
               )
             })}
           </nav>
+
+          <NotificationsMenu />
 
           <OverflowMenu />
 
